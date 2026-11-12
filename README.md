@@ -1,4 +1,4 @@
-# Stored XSS — Cybersecurity Assignment 2
+# Stored XSS
 
 A comment board with two views of the same stored comments. The markup simulation models the appearance of one fixed HTML sample. The protected view renders every comment as plain text.
 
@@ -9,9 +9,9 @@ A comment board with two views of the same stored comments. The markup simulatio
 
 ## Run locally
 
-Run `python -m http.server 8000 --bind 127.0.0.1 --directory comment-board` from the repository root and open [the local demo](http://127.0.0.1:8000).
+Run `python -m http.server 8000 --bind 127.0.0.1` from the repository root and open [the local demo](http://127.0.0.1:8000).
 
-## Video and viva
+## How To
 
 1. Open **Markup simulation**, enter `<strong>Stored comment</strong>`, and click **Save comment**. Reload to show that the bold sample persists.
 2. Open **Protected view**. The same stored comment appears with the tags visible. Capture the screenshot here.
