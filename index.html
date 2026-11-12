@@ -1,36 +1,48 @@
 <!doctype html>
 <html lang="en">
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Stored XSS Prevention Demo</title>
-<style>
-  body { font: 1rem/1.5 system-ui, sans-serif; background: #eef2f8; color: #17253c; margin: 0; }
-  main { max-width: 38rem; margin: 4rem auto; padding: 0 1rem; }
-  section { background: white; padding: 1.5rem; border: 1px solid #cad4e3; border-radius: .75rem; }
-  h1, h2 { margin-top: 0; }
-  nav { display: flex; gap: 1rem; margin-bottom: 1rem; }
-  form { display: grid; gap: .65rem; }
-  textarea, button { font: inherit; padding: .55rem; }
-  button { justify-self: start; background: #17438c; color: white; border: 0; border-radius: .3rem; cursor: pointer; }
-  li { white-space: pre-wrap; overflow-wrap: anywhere; }
-</style>
-<main>
-  <h1>Stored XSS Prevention Demo</h1>
-  <nav aria-label="Demo views">
-    <a id="simulation-link" href="?view=simulation">Markup simulation</a>
-    <a id="protected-link" href="?view=protected">Protected view</a>
-  </nav>
-  <section>
-    <h2 id="view-title">Protected view</h2>
-    <form id="comment-form">
-      <label for="comment">Write a comment</label>
-      <textarea id="comment" rows="3" maxlength="500" required></textarea>
-      <button>Save comment</button>
-    </form>
-    <p id="status" role="status">Comments are saved in this browser.</p>
-    <h2>Saved comments</h2>
-    <ul id="comments"></ul>
-  </section>
-</main>
-<script src="app.js"></script>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Stored XSS Demo — Variant 1</title>
+  <style>
+    body { font: 1rem/1.5 system-ui, sans-serif; background: #eef2f8; color: #17253c; margin: 0; }
+    main { max-width: 38rem; margin: 4rem auto; padding: 0 1rem; }
+    section { background: white; padding: 1.5rem; border: 1px solid #cad4e3; border-radius: .75rem; }
+    h1, h2 { margin-top: 0; }
+    nav { display: flex; gap: 1rem; margin-bottom: 1rem; }
+    nav a { color: #17438c; text-decoration: none; padding: .25rem .5rem; border-radius: .25rem; }
+    nav a[aria-current="page"] { background: #17438c; color: white; font-weight: 600; }
+    nav a#vulnerable-link[aria-current="page"] { background: #9b1c1c; }
+    form { display: grid; gap: .65rem; }
+    textarea, button { font: inherit; padding: .55rem; }
+    .actions { display: flex; gap: .5rem; }
+    button { background: #17438c; color: white; border: 0; border-radius: .3rem; cursor: pointer; }
+    button.secondary { background: #5a687d; }
+    li { white-space: pre-wrap; overflow-wrap: anywhere; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Stored XSS Demo (Variant 1)</h1>
+    <nav aria-label="Demo views">
+      <a id="vulnerable-link" href="?view=vulnerable">Vulnerable view</a>
+      <a id="protected-link" href="?view=protected">Protected view</a>
+    </nav>
+    <section>
+      <h2 id="view-title">Protected view</h2>
+      <form id="comment-form">
+        <label for="comment">Write a comment</label>
+        <textarea id="comment" rows="3" maxlength="500" required></textarea>
+        <div class="actions">
+          <button type="submit">Save comment</button>
+          <button type="button" id="clear-btn" class="secondary">Clear comments</button>
+        </div>
+      </form>
+      <p id="status" role="status">Comments are saved in this browser.</p>
+      <h2>Saved comments</h2>
+      <ul id="comments"></ul>
+    </section>
+  </main>
+  <script src="app.js"></script>
+</body>
 </html>
